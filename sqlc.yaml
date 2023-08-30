@@ -1,0 +1,15 @@
+version: "1"
+packages:
+  - name: "db"
+    path: "./db/sqlc"
+    queries: "./db/query"
+    schema: "./db/migration"
+    engine: "postgresql"
+    emit_json_tags: true
+    emit_prepared_queries: false
+    emit_exact_table_names: false
+    emit_interface: false
+    database:
+      uri: "postgresql://postgres:habie@localhost:5430/simple_bank?sslmode=disable"
+  #   rules:
+  #     - sqlc/db-prepare
