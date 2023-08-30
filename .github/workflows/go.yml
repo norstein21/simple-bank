@@ -35,12 +35,8 @@ jobs:
 
       # - name: Build
       #   run: go build -v ./...
-
-      - name: Test
-        run: make test
-
       - name: Run migrations up
         run: make migrateup
 
-      - name: Run migrations down
-        run: make migratedown
+      - name: test_golang
+        run: make test
