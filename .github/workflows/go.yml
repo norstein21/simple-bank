@@ -5,24 +5,42 @@ name: Go
 
 on:
   push:
-    branches: [ "belajar" ]
+    branches: ["belajar"]
   pull_request:
-    branches: [ "belajar" ]
+    branches: ["belajar"]
 
 jobs:
-
-  build:
+  test:
+    name: Test
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: habie
+          POSTGRES_DB: simple_bank
+        ports:
+          - 5430:5430
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.20'
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.20"
 
-    # - name: Build
-    #   run: go build -v ./...
+      # - name: Build
+      #   run: go build -v ./...
 
-    - name: Test
-      run: go test -v ./...
+      - name: Test
+        run: make test
+
+      - name: Run migrations up
+        run: make migrateup
+
+      - name: Run migrations down
+        run: make migratedown
