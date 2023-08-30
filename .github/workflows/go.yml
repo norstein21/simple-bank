@@ -36,7 +36,7 @@ jobs:
       - name: Install Golang Migrate
         run:
           curl -L https://github.com/golang-migrate/migrate/releases/download/v4.16.2/migrate.linux-arm64.tar.gz | tar xvz
-          sudo mv migrate.linux-arm64 /usr/local/bin/migrate
+          sudo mv migrate.linux-arm64 /usr/bin/migrate
           which migrate
 
       # - name: Build
