@@ -33,10 +33,16 @@ jobs:
         with:
           go-version: "1.20"
 
+      - name: Install Golang Migrate
+        run:
+          curl -L https://github.com/golang-migrate/migrate/releases/download/v4.16.2/migrate.linux-arm64.tar.gz | tar xvz
+          sudo mv migrate.linux-arm64 /usr/local/bin/migrate
+          which migrate
+
       # - name: Build
       #   run: go build -v ./...
       - name: Run migrations up
         run: make migrateup
 
-      - name: test_golang
+      - name: Unit Test Golang
         run: make test
