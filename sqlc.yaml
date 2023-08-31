@@ -10,6 +10,6 @@ packages:
     emit_exact_table_names: false
     emit_interface: false
     database:
-      uri: "postgresql://postgres:habie@localhost:5430/simple_bank?sslmode=disable"
+      uri: "postgresql://postgres:habie@localhost:5432/simple_bank?sslmode=disable"
   #   rules:
   #     - sqlc/db-prepare
